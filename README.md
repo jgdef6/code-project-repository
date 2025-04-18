@@ -16,7 +16,11 @@ The implementation uses a divide-and-conquer approach with the following steps:
 
 ## Running the Tests
 
-The tests use the `minitest` gem, which is included in the Ruby standard library.
+The tests use the `rspec` gem. If you don't have it installed, you can install it with:
+
+```
+gem install rspec
+```
 
 To run the tests:
 
@@ -26,7 +30,7 @@ To run the tests:
 4. Run the tests with:
 
 ```
-ruby quicksort_test.rb
+rspec quicksort_spec.rb
 ```
 
 ## Test Cases
