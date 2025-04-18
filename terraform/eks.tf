@@ -16,6 +16,9 @@ module "eks" {
   # Enable EKS Cluster CloudWatch Logging
   cluster_enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
+  # Enable IRSA (IAM Roles for Service Accounts)
+  enable_irsa = true
+
   # Add required tags for the cluster autoscaler
   tags = merge(
     var.tags,

@@ -10,7 +10,17 @@ The infrastructure includes:
 - An EKS cluster deployed in the private subnets
 - A managed node group with autoscaling capabilities
 - Cluster Autoscaler for automatically adjusting the size of the Kubernetes cluster based on resource demands
+- IAM Roles for Service Accounts (IRSA) for secure pod-level access to AWS resources
 - Necessary IAM roles and policies for the EKS cluster and Cluster Autoscaler
+
+## IAM Roles for Service Accounts (IRSA)
+
+This configuration uses IRSA to provide fine-grained access control for the Cluster Autoscaler. IRSA allows Kubernetes service accounts to assume IAM roles directly, which provides the following benefits:
+
+- Improved security by using temporary credentials
+- Fine-grained access control at the pod level
+- Reduced need for node instance profiles with broad permissions
+- Simplified management of AWS permissions for Kubernetes workloads
 
 ## Prerequisites
 
@@ -55,6 +65,12 @@ kubectl get nodes
 
 ```bash
 kubectl get pods -n kube-system | grep cluster-autoscaler
+```
+
+7. Verify the IRSA configuration:
+
+```bash
+kubectl describe serviceaccount cluster-autoscaler -n kube-system
 ```
 
 ## Customization
